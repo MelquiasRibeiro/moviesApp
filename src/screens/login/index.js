@@ -26,6 +26,7 @@ const Login = () => {
   async function handleLogin() {
     console.log(email)
     console.log(password)
+    navigation.navigate('Home');
     // await firebase
     // .auth()
     // .signInWithEmailAndPassword(email, password)

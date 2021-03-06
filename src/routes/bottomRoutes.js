@@ -10,7 +10,8 @@ import Favorites from '../screens/favorites';
 import {activeBackgroundColor,
         activeTintColor,
         inactiveBackgroundColor,
-        inactiveTintColor
+        inactiveTintColor,
+        themeColor
     } from '../styles/colors';
 
 const { Navigator, Screen } = createBottomTabNavigator();
@@ -20,7 +21,7 @@ const RoutesBottom = () => {
         <Navigator
             screenOptions={{
                 cardStyle: {
-                    backgroundColor: '#fafafa',
+                    backgroundColor: themeColor,
                 },
             }}
             tabBarOptions={{
@@ -50,7 +51,7 @@ const RoutesBottom = () => {
             }}
         >
             <Screen
-                name="home"
+                name="Home"
                 component={Home}
                 options={{
                     tabBarLabel: '',
@@ -59,23 +60,23 @@ const RoutesBottom = () => {
                             <Entypo
                                 name="home"
                                 size={size}
-                                color={focused ? '#1A2F7B' : color}
+                                color={focused ? activeTintColor : color}
                             />
                         );
                     },
                 }}
             />
             <Screen
-                name="stock"
+                name="Favorites"
                 component={Favorites}
                 options={{
                     tabBarLabel: '',
                     tabBarIcon: ({ color, size, focused }) => {
                         return (
-                            <Entypo
+                            <MaterialIcons
                                 name="favorite"
                                 size={size}
-                                color={focused ? '#1A2F7B' : color}
+                                color={focused ? activeTintColor : color}
                             />
                         );
                     },
@@ -91,7 +92,7 @@ const RoutesBottom = () => {
                             <MaterialIcons
                                 name="search"
                                 size={size}
-                                color={focused ? '#1A2F7B' : color}
+                                color={focused ? activeTintColor : color}
                             />
                         );
                     },
