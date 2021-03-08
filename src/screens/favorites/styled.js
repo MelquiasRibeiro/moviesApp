@@ -29,4 +29,9 @@ export const RemoveButton = styled.TouchableOpacity`
     margin:0 16px 8px 0;
 `;
 
-
+export const Empty= styled.Text`
+    text-align:center;
+    font-size:16px;
+    color:${secundaryColor};
+    margin-top:150px;
+`;

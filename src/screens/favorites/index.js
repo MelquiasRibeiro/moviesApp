@@ -1,41 +1,32 @@
 import React from 'react';
-import {Container,Title,RemoveButton} from './styled';
-import {MoviesContainer,Movie,Rate,Name,Poster} from '../home/styles';
+import {Container,Title,RemoveButton,Empty} from './styled';
+import {MoviesContainer,Movie,Name,Poster} from '../home/styles';
 import {FontAwesome} from '@expo/vector-icons';
+import { connect } from 'react-redux'
+import { remove } from '../../store/ducks/favorites';
+import { bindActionCreators } from "redux"
+
+import {BaseUrlImage} from "../../services/api";
 
 
+const Favorites = (props) => {
 
-const Favorites = () => {
+const {favorites} =props;
 
-  const BaseUrlImage='https://image.tmdb.org/t/p/w500';
+function removeFromFavorites(id) {
+  props.remove(id)
+}
 
-
-  const favorites=[
-  {"id": 527774,
-    "title": "Raya e o Último Dragão",
-    "vote_average": 8.5,
-    "poster_path": "/yXrb84zJidCefyhTWHwo4yCDvwz.jpg",
-  },
-  {"id": 527775,
-  "title": "Raya e o Último Dragão",
-  "vote_average": 8.5,
-  "poster_path": "/yXrb84zJidCefyhTWHwo4yCDvwz.jpg",
-  },
-  {"id": 527776,
-  "title": "Raya e o Último Dragão",
-  "vote_average": 8.5,
-  "poster_path": "/yXrb84zJidCefyhTWHwo4yCDvwz.jpg",
-  }
-  ]
   return (
       <Container>
         <Title>Seus filme favoritos</Title>
 
         <MoviesContainer>
         {
+          favorites.length=== 0 ? <Empty>Você ainda não tem filmes favoritos :(</Empty>:
           favorites.map((film)=>(
             <Movie key={film.id}>
-              <RemoveButton>
+              <RemoveButton onPress={()=>removeFromFavorites(film.id)}>
                 <FontAwesome name="remove" size={16} color="#ffffff" />
               </RemoveButton>
               <Poster source={{uri: `${BaseUrlImage}${film.poster_path}`}}/>
@@ -48,5 +39,16 @@ const Favorites = () => {
       </Container>
     );
 }
+const mapStateToProps = state => ({
+  favorites: state.favorites.favorites
 
-export default Favorites;
+})
+
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  remove
+}, dispatch)
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Favorites)

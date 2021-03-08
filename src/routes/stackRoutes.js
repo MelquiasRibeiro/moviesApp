@@ -5,7 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Login from '../screens/login';
 import Register from '../screens/register';
 import bottomNavigation from './bottomRoutes';
-
+import Details from "../screens/details";
 import {themeColor} from '../styles/colors';
 
 
@@ -25,6 +25,7 @@ const StackRoutes = () => {
                 <routes.Screen name="Login" component={Login} />
                 <routes.Screen name="Register" component={Register} />
                 <routes.Screen name="Home" component={bottomNavigation} />
+                <routes.Screen name="Details" component={Details} />
             </routes.Navigator>
         </NavigationContainer>
     );

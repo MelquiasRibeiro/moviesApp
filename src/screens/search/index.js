@@ -3,7 +3,7 @@ import {Container,Header,SearchInput,Title,Empty,SearchButton } from './styled';
 import {MoviesContainer,Movie,Rate,Poster,Name} from '../home/styles'
 import {Entypo,FontAwesome} from '@expo/vector-icons';
 import search from '../../assets/images/search.png'
-import {api} from '../../services/api'; 
+import {api, BaseUrlImage} from "../../services/api";
 
 
 
@@ -12,7 +12,6 @@ const Search = () => {
   const [movie,setMovie]=useState('');
   const [results,setResults] = useState([]);
   
-  const BaseUrlImage='https://image.tmdb.org/t/p/w500';
 
   function handleGetData() {
     api.get(`/search/movie?api_key=8d05659f30182cd2011ad0dd54e9f430&language=pt-BR&page=1&include_adult=true&query=${movie}`)
