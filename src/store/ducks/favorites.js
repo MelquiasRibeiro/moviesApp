@@ -1,5 +1,4 @@
-
-// Action Types
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const Types = {
     ADD: 'favorite/ADD',
