@@ -16,7 +16,6 @@ export default function reducer(state = initialState, action) {
 
     switch (type) {
       case Types.SET_MIDIA:
-        console.log(type)
         return { movies: payload, isLoading: false}
       case Types.IS_LOADING:
         return { ...state, isLoading: true }

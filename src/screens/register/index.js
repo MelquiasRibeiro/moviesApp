@@ -28,6 +28,10 @@ const Register = () => {
       navigation.navigate('Home')
     }).catch((err)=>{
       console.log(err)
+      Alert.alert(
+        "Ocorreu um erro",
+        "Tente novamente mais tarde",
+      );
     })
   }
 

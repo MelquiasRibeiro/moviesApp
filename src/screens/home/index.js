@@ -13,7 +13,7 @@ import {
   Name,
   Legend,
 } from './styles';
-import {api, BaseUrlImage} from "../../services/api";
+import {BaseUrlImage} from "../../services/api";
 import { useNavigation } from '@react-navigation/native';
 import { bindActionCreators } from "redux"
 import { connect } from 'react-redux'
@@ -21,7 +21,6 @@ import {loadMidia,setIsLoadingChars} from '../../store/ducks/movies';
 
 const Home = (props) => {
    const [type,setType]=useState('movie');
-   //const [data,setData]=useState([]);
 
    const navigation = useNavigation();
 
@@ -44,7 +43,7 @@ const Home = (props) => {
           <TextBitton active={true}>Filmes</TextBitton>
         </TypeButton>
         <TypeButton onPress={()=>setType('tv')}>
-          <TextBitton>séries</TextBitton>
+          <TextBitton>Séries</TextBitton>
         </TypeButton>
       </TypeContainer>
       <Legend>Principais da semana</Legend>

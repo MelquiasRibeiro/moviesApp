@@ -1,5 +1,7 @@
 import React,{useState} from 'react';
 import { useNavigation } from '@react-navigation/native';
+import {Alert} from "react-native";
+
 import {
   Container,
   Image,
@@ -23,13 +25,15 @@ const Login = () => {
   const navigation = useNavigation();
 
   async function handleLogin() {  
-    navigation.navigate('Home');
-
-    // firebase.auth().signInWithEmailAndPassword(email,password).then((response)=>{
-    //   console.log(response)
-    // }).catch((err)=>{
-    //   console.log(err)
-    // })
+     firebase.auth().signInWithEmailAndPassword(email,password).then((response)=>{
+     navigation.navigate('Home');
+    }).catch((err)=>{
+      console.log(err)
+      Alert.alert(
+        "Ocorreu um erro",
+        "Seus dados estão corretos?",
+      );
+    })
   }
   function handleNavigateToRegister() {
       navigation.navigate('Register');
