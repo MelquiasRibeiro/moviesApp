@@ -1,6 +1,8 @@
 import React,{useState} from 'react';
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import firebase from 'firebase';
+
 
 import {
   Container,
@@ -22,18 +24,13 @@ const Register = () => {
   const navigation = useNavigation();
 
   async function handleRegister() {
-    console.log(email)
-    console.log(password)
-    // await firebase
-    // .auth()
-    // .signInWithEmailAndPassword(email, password)
-    // .then(handleNavigateToList)
-    // .catch(error => {
-    //   console.log(error)
-    //   setLoading(false)
-    //   setError(true)
-    // });
+    firebase.auth().createUserWithEmailAndPassword(email,password).then(()=>{
+      navigation.navigate('Home')
+    }).catch((err)=>{
+      console.log(err)
+    })
   }
+
   function handleNavigateToLogin() {
       navigation.navigate('Login');
   }

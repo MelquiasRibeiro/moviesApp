@@ -15,33 +15,25 @@ import {
 } from './styles';
 import {api, BaseUrlImage} from "../../services/api";
 import { useNavigation } from '@react-navigation/native';
+import { bindActionCreators } from "redux"
+import { connect } from 'react-redux'
+import {loadMidia,setIsLoadingChars} from '../../store/ducks/movies';
 
-
-const Home = () => {
+const Home = (props) => {
    const [type,setType]=useState('movie');
-   const [data,setData]=useState([]);
+   //const [data,setData]=useState([]);
 
    const navigation = useNavigation();
 
+   useEffect(() => {
+    props.setIsLoadingChars()
+    props.loadMidia(type)
+}, [type])
 
-     function handleGetData() {
-       api.get(`trending/${type}/week?api_key=8d05659f30182cd2011ad0dd54e9f430&language=pt-BR`)
-       .then((respose)=>{
-         setData(respose.data.results)
-         console.log(respose.data.results)
-
-       }).catch( (err)=>{
-         console.log(err)
-       })
-     }
-  
-     useEffect(() => {
-       handleGetData()
-     }, [type])
-
+  const data=props.movies;
      
-     function handleNavigateToDetails() {
-      navigation.navigate('Details');
+     function handleNavigateToDetails(film) {
+      navigation.navigate('Details',film);
   }
 
   return (
@@ -59,7 +51,7 @@ const Home = () => {
       <MoviesContainer>
         {
           data.map((film)=>(
-            <Movie key={film.id}onPress={handleNavigateToDetails} >
+            <Movie key={film.id}onPress={()=>handleNavigateToDetails(film)} >
               <Poster source={{uri: `${BaseUrlImage}${film.poster_path}`}}/>
               <Rate>
                   <Entypo name="star" size={16}  color='#f6a93b'/>
@@ -75,4 +67,16 @@ const Home = () => {
   </Container>
   );
 }
-export default Home;
+
+
+const mapStateToProps = state => ({
+  movies: state.movies.movies,
+  isLoading: state.movies.isLoading,
+})
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  setIsLoadingChars, loadMidia
+}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)
+

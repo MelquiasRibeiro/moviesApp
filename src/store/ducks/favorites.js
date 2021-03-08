@@ -7,21 +7,7 @@ export const Types = {
   };
 
 const initialState = {
-  favorites:[{"id": 527774,
-  "title": "Raya e o Último Dragão",
-  "vote_average": 8.5,
-  "poster_path": "/yXrb84zJidCefyhTWHwo4yCDvwz.jpg",
-},
-{"id": 527775,
-"title": "Raya e o Último Dragão",
-"vote_average": 8.5,
-"poster_path": "/yXrb84zJidCefyhTWHwo4yCDvwz.jpg",
-},
-{"id": 527776,
-"title": "Raya e o Último Dragão",
-"vote_average": 8.5,
-"poster_path": "/yXrb84zJidCefyhTWHwo4yCDvwz.jpg",
-}]
+  favorites:[]
   
 };
 
@@ -31,7 +17,7 @@ export default function reducer(state = initialState, action) {
 
     switch (type) {
       case Types.ADD:
-        return { ...state, favorites: [ ...favorites, payload ] }
+        return { ...state, favorites: [ ...favorites, payload.movie ] }
       case Types.REMOVE:
         return { ...state, favorites: favorites.filter(favorite => favorite.id !== payload.id) }
         default:

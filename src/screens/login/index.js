@@ -12,8 +12,7 @@ import {
 } from './styles';
 import Logo from '../../assets/images/logo.png'
 import { Feather } from '@expo/vector-icons';
-
-
+import firebase from 'firebase';
 
 const Login = () => {
 
@@ -23,19 +22,14 @@ const Login = () => {
 
   const navigation = useNavigation();
 
-  async function handleLogin() {
-    console.log(email)
-    console.log(password)
+  async function handleLogin() {  
     navigation.navigate('Home');
-    // await firebase
-    // .auth()
-    // .signInWithEmailAndPassword(email, password)
-    // .then(handleNavigateToList)
-    // .catch(error => {
-    //   console.log(error)
-    //   setLoading(false)
-    //   setError(true)
-    // });
+
+    // firebase.auth().signInWithEmailAndPassword(email,password).then((response)=>{
+    //   console.log(response)
+    // }).catch((err)=>{
+    //   console.log(err)
+    // })
   }
   function handleNavigateToRegister() {
       navigation.navigate('Register');

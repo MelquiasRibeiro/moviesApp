@@ -52,13 +52,15 @@ color:${secundaryColor};
 
 export const FavoriteButton  = styled.TouchableOpacity``;
 
-export const Info  = styled.ScrollView``;
+export const Info  = styled.ScrollView`
+    margin-top:32px;
+`;
 
 export const NumberInfo  = styled.View`
     display:flex;
     flex-direction:row;
     justify-content:space-between;
-    padding:16px 32px;
+    padding:16px 0;
 `;
 
 export const Date  = styled.Text`
@@ -67,5 +69,6 @@ color:${secundaryColor};
 
 export const Description  = styled.Text`
 color:${secundaryColor};
+margin-top:16px;
 
 `;
